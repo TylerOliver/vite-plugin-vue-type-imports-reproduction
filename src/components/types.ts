@@ -1,11 +1,10 @@
-
 export interface ButtonProps {
-    label: string;
-    primary?: boolean;
-    size?: 'small' | 'medium' | 'large';
-    backgroundColor?: string;
+  label: string;
+  primary?: boolean;
+  size?: "small" | "medium" | "large";
+  backgroundColor?: string;
 }
 
 export interface ButtonEmits {
-    (e: 'click'): void;
+  (e: "click"): void;
 }
