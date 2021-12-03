@@ -1,5 +1,4 @@
 import { resolve } from "path";
-import vue from "@vitejs/plugin-vue";
 import VueTypeImports from "vite-plugin-vue-type-imports";
 
 module.exports = {
@@ -15,20 +14,12 @@ module.exports = {
   "core": {
     "builder": "storybook-builder-vite"
   },
-  async viteFinal(config, { configType }) {
-    return {
-      ...config,
-      resolve: {
-        alias: {
-          "@": `${resolve(__dirname, "../src")}`,
-          // vue: "vue/dist/vue.esm-bundler.js",
-          // vue: '@vue/compat/dist/vue.esm-bundler.js',
-        },
-        plugins: [
-          vue(),
-          VueTypeImports(),
-        ]
-      }
-    }
+  viteFinal: async (config, { configType }) => {
+    config.plugins = [
+      ...config.plugins,
+      VueTypeImports()
+    ]
+    config.resolve.alias["@"] = `${resolve(__dirname, "../src")}`
+    return config
   }
 }
